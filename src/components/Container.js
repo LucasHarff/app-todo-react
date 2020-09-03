@@ -1,35 +1,27 @@
 import React, { useState } from "react";
 
 function Container() {
-  const [tasks, setTasks] = useState([
-    { newTask: "Estudar React", owner: "Luigi", simpleId: "testeUm1010" },
-  ]);
-  const [newTask, setNewTask] = useState(""); //string vazia
-  const [owner, setOwner] = useState("");
-
   function addNewTask() {
-    const task = { newTask, owner, simpleId: `${Date.now()}` };
+    const tarefa = document.getElementById("inputTarefa").value;
+    const owner = document.getElementById("inputOwner").value;
 
-    setTasks([...tasks, task]);
-    // console.log(tasks);
-    setNewTask("");
-    setOwner("");
+    const tarefaCompleta = { tarefa, owner, simpleId: `${Date.now()}` };
+
+    console.log(tarefaCompleta);
   }
 
   return (
     <div id="container">
       <input
-        value={newTask}
+        id="inputTarefa"
         placeholder="Digite uma nova tarefa"
         type="text"
-        onChange={(e) => setNewTask(e.target.value)}
       />
       <br />
       <input
-        value={owner}
+        id="inputOwner"
         placeholder="Digite o nome do criador"
         type="text"
-        onChange={(e) => setOwner(e.target.value)}
       />
       <br />
       <button type="button" onClick={addNewTask}>
@@ -38,18 +30,9 @@ function Container() {
       <br />
 
       <div className="previewTask">
-        <h3>{newTask}</h3>
-        <h3>{owner}</h3>
+        <h3>nome</h3>
+        <h3>owner</h3>
       </div>
-
-      <ul>
-        {tasks.map((eachTask) => (
-          <li key={eachTask.simpleId}>
-            <b>{eachTask.owner}: </b>
-            {eachTask.newTask}
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
